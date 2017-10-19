@@ -10,13 +10,13 @@
 #' @export
 getCredentials <- function(rolename = NULL) {
   if (is.null(rolename)) {
-    tmp <- metadata$iam_role_names()
+    tmp <- aws.ec2metadata::metadata$iam_role_names()
 
   } else {
     tmp <- rolename
 
   }
-  info <- metadata$iam_role(tmp)
+  info <- aws.ec2metadata::metadata$iam_role(tmp)
   return(
     Sys.setenv(
       "AWS_ACCESS_KEY_ID" = info$AccessKeyId,
